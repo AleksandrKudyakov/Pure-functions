@@ -1,38 +1,19 @@
-import { default as colourHealth } from '../js/color';
-import { default as param } from '../js/params';
+import colourHealth from '../js/color';
 
-test('To have params "health"', () => {
-  expect(param).toHaveProperty('health');
+test('should show healthy', () => {
+  const received = colourHealth({ name: 'Маг', health: 90 });
+  const expected = 'healthy';
+  expect(received).toBe(expected);
 });
 
-test('Returned right value', () => {
-  if (param.health > 50) {
-    expect(colourHealth(param)).toBe('healthy');
-  } else if (param.health <= 50 && param.health > 15) {
-    expect(colourHealth(param)).toBe('wounded');
-  } else if (param.health <= 15 && param.health > 0) {
-    expect(colourHealth(param)).toBe('critical');
-  }
+test('should show wounded', () => {
+  const received = colourHealth({ name: 'Маг', health: 15 });
+  const expected = 'wounded';
+  expect(received).toBe(expected);
 });
 
-test('Check all value', () => {
-  for (let i = 0; i < 100; i += 5) {
-    const obj = {};
-    obj.health = i;
-    expect(colourHealth(obj)).toBeTruthy();
-  }
-});
-
-test('Not undefined', () => {
-  expect(colourHealth(param)).not.toBeUndefined();
-});
-
-test('Not null', () => {
-  expect(colourHealth(param)).not.toBeNull();
-});
-
-test('Is null', () => {
-  const obj = {};
-  obj.health = -1;
-  expect(colourHealth(obj)).toBeNull();
+test('should show critical', () => {
+  const received = colourHealth({ name: 'Маг', health: 13 });
+  const expected = 'critical';
+  expect(received).toBe(expected);
 });

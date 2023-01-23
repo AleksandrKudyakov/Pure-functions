@@ -1,14 +1,9 @@
-export default function colourHealth(obj) {
-  const { health } = obj;
-  if (health > 50) {
-    console.log('%c%s', 'color: green', 'healthy');
+function colourHealth(obj) {
+  if (obj.health > 50) {
     return 'healthy';
-  } if (health <= 50 && health > 15) {
-    console.log('%c%s', 'color: yellow', 'wounded');
+  } if (obj.health <= 50 && obj.health >= 15) {
     return 'wounded';
-  } if (health <= 15 && health >= 0) {
-    console.log('%c%s', 'color: red', 'critical');
-    return 'critical';
   }
-  return null;
+  return 'critical';
 }
+export default colourHealth;
